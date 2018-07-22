@@ -1,0 +1,17 @@
+{
+  "name": "php-fn/test",
+  "homepage": "https://github.com/php-fn/php-fn-test",
+  "license": "MIT",
+  "authors": [{"name": "Demjan Kaluzki"}],
+  "prefer-stable": true,
+  "require": {
+    "php": ">=5.6",
+    "phpunit/PHPUnit": "^5"
+  },
+  "autoload": {
+    "files": ["src/autoload-files.php"]
+  },
+  "autoload-dev": {
+    "psr-4": {"fn\\": ["tests/fn"]}
+  }
+}
