@@ -69,6 +69,13 @@ class FunctionsTest extends TestCase
         same\trial($exception = new Exception('message'), static function (Exception $exception) {
             throw $exception;
         }, $exception);
+
+        gt(0.0098, 0.0099);
+        ge(0.0098, 0.0099);
+        ge(0.0098, 0.0098);
+        lt(0.0098, 0.0097);
+        le(0.0098, 0.0097);
+        le(0.0098, 0.0098);
     }
 
     /**
@@ -208,6 +215,48 @@ class FunctionsTest extends TestCase
             });
         } catch(ExpectationFailedException $actual) {
             $this->assertSame('Failed asserting that two strings are equal.', $actual->getMessage());
+        }
+
+        try {
+            gt(0.0098, 0.0098);
+            $this->fail();
+        } catch(ExpectationFailedException $actual) {
+            $this->assertSame('Failed asserting that 0.0098 is greater than 0.0098.', $actual->getMessage());
+        }
+
+        try {
+            gt(0.0098, 0.0097);
+            $this->fail();
+        } catch(ExpectationFailedException $actual) {
+            $this->assertSame('Failed asserting that 0.0097 is greater than 0.0098.', $actual->getMessage());
+        }
+
+        try {
+            ge(0.0098, 0.0097);
+            $this->fail();
+        } catch(ExpectationFailedException $actual) {
+            $this->assertSame('Failed asserting that 0.0097 is equal to 0.0098 or is greater than 0.0098.', $actual->getMessage());
+        }
+
+        try {
+            lt(0.0098, 0.0098);
+            $this->fail();
+        } catch(ExpectationFailedException $actual) {
+            $this->assertSame('Failed asserting that 0.0098 is less than 0.0098.', $actual->getMessage());
+        }
+
+        try {
+            lt(0.0098, 0.0099);
+            $this->fail();
+        } catch(ExpectationFailedException $actual) {
+            $this->assertSame('Failed asserting that 0.0099 is less than 0.0098.', $actual->getMessage());
+        }
+
+        try {
+            le(0.0098, 0.0099);
+            $this->fail();
+        } catch(ExpectationFailedException $actual) {
+            $this->assertSame('Failed asserting that 0.0099 is equal to 0.0098 or is less than 0.0098.', $actual->getMessage());
         }
     }
 }

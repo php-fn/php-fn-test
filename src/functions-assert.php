@@ -46,6 +46,54 @@ namespace fn\test\assert {
     }
 
     /**
+     * @see Assert::assertGreaterThan
+     *
+     * @param mixed $expected
+     * @param mixed $actual
+     * @param string $message
+     */
+    function gt($expected, $actual, string $message = ''): void
+    {
+        Assert::assertGreaterThan(...func_get_args());
+    }
+
+    /**
+     * @see Assert::assertGreaterThanOrEqual
+     *
+     * @param mixed $expected
+     * @param mixed $actual
+     * @param string $message
+     */
+    function ge($expected, $actual, string $message = ''): void
+    {
+        Assert::assertGreaterThanOrEqual(...func_get_args());
+    }
+
+    /**
+     * @see Assert::assertLessThan
+     *
+     * @param mixed $expected
+     * @param mixed $actual
+     * @param string $message
+     */
+    function lt($expected, $actual, string $message = ''): void
+    {
+        Assert::assertLessThan(...func_get_args());
+    }
+
+    /**
+     * @see Assert::assertLessThanOrEqual
+     *
+     * @param mixed $expected
+     * @param mixed $actual
+     * @param string $message
+     */
+    function le($expected, $actual, string $message = ''): void
+    {
+        Assert::assertLessThanOrEqual(...func_get_args());
+    }
+
+    /**
      * @see Assert::assertTrue
      *
      * @param bool   $condition
