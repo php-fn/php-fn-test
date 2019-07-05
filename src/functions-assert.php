@@ -1,14 +1,14 @@
 <?php
 /**
- * (c) php-fn
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed map this source code.
+ * Copyright (C) php-fn. See LICENSE file for license details.
  */
 
 namespace fn\test\assert {
 
-    use PHPUnit_Framework_Assert as Assert;
+    use Exception;
+    use PHPUnit\Framework\Assert;
+    use PHPUnit\Framework\AssertionFailedError;
+    use PHPUnit\Framework\Constraint\IsType;
 
     /**
      * @see Assert::assertEquals
@@ -29,7 +29,7 @@ namespace fn\test\assert {
         $maxDepth = 10,
         $canonicalize = false,
         $ignoreCase = false
-    ) {
+    ): void {
         Assert::assertEquals(...func_get_args());
     }
 
@@ -40,7 +40,7 @@ namespace fn\test\assert {
      * @param mixed  $actual
      * @param string $message
      */
-    function same($expected, $actual, $message = '')
+    function same($expected, $actual, $message = ''): void
     {
         Assert::assertSame(...func_get_args());
     }
@@ -51,7 +51,7 @@ namespace fn\test\assert {
      * @param bool   $condition
      * @param string $message
      */
-    function true($condition, $message = '')
+    function true($condition, $message = ''): void
     {
         Assert::assertTrue(...func_get_args());
     }
@@ -62,7 +62,7 @@ namespace fn\test\assert {
      * @param bool   $condition
      * @param string $message
      */
-    function false($condition, $message = '')
+    function false($condition, $message = ''): void
     {
         Assert::assertFalse(...func_get_args());
     }
@@ -74,11 +74,11 @@ namespace fn\test\assert {
      * @param mixed $actual
      * @param string $message
      */
-    function type($expected, $actual, $message = '')
+    function type($expected, $actual, $message = ''): void
     {
         try {
-            new \PHPUnit_Framework_Constraint_IsType(strtolower($expected));
-        } catch (\PHPUnit_Framework_Exception $ignore) {
+            new IsType(strtolower($expected));
+        } catch (\PHPUnit\Framework\Exception $ignore) {
             Assert::assertInstanceOf(...func_get_args());
             return;
         }
@@ -90,27 +90,26 @@ namespace fn\test\assert {
      *
      * @param string $message
      *
-     * @throws \PHPUnit_Framework_AssertionFailedError
-     *
+     * @throws AssertionFailedError
      */
-    function fail($message)
+    function fail($message): void
     {
         Assert::fail(...func_get_args());
     }
 
     /**
-     * @param string|\Exception $exception
+     * @param string|Exception $exception
      * @param callable $callable
      * @param mixed ...$arguments
      */
-    function exception($exception, callable $callable, ...$arguments)
+    function exception($exception, callable $callable, ...$arguments): void
     {
-        if (!$exception instanceof \Exception) {
-            $exception = new \Exception($exception);
+        if (!$exception instanceof Exception) {
+            $exception = new Exception($exception);
         }
         try {
             call_user_func_array($callable, $arguments);
-        } catch (\Exception $caught) {
+        } catch (Exception $caught) {
             type(get_class($exception), $caught);
             equals($exception->getMessage(), $caught->getMessage());
             return;
@@ -121,7 +120,7 @@ namespace fn\test\assert {
 
 namespace fn\test\assert\not {
 
-    use PHPUnit_Framework_Assert as Assert;
+    use PHPUnit\Framework\Assert;
 
     /**
      * @see Assert::assertNotEquals
@@ -142,7 +141,7 @@ namespace fn\test\assert\not {
         $maxDepth = 10,
         $canonicalize = false,
         $ignoreCase = false
-    ) {
+    ): void {
         Assert::assertNotEquals(...func_get_args());
     }
 
@@ -153,7 +152,7 @@ namespace fn\test\assert\not {
      * @param mixed  $actual
      * @param string $message
      */
-    function same($expected, $actual, $message = '')
+    function same($expected, $actual, $message = ''): void
     {
         Assert::assertNotSame(...func_get_args());
     }
@@ -164,7 +163,7 @@ namespace fn\test\assert\not {
      * @param bool   $condition
      * @param string $message
      */
-    function true($condition, $message = '')
+    function true($condition, $message = ''): void
     {
         Assert::assertNotTrue(...func_get_args());
     }
@@ -175,7 +174,7 @@ namespace fn\test\assert\not {
      * @param bool   $condition
      * @param string $message
      */
-    function false($condition, $message = '')
+    function false($condition, $message = ''): void
     {
         Assert::assertNotFalse(...func_get_args());
     }
@@ -183,19 +182,20 @@ namespace fn\test\assert\not {
 
 namespace fn\test\assert\equals {
 
+    use Exception;
     use fn\test\assert;
     use fn;
 
     /**
-     * @see \PHPUnit_Framework_Assert::assertEquals
+     * @see \PHPUnit\Framework\Assert::assertEquals
      *
-     * @param mixed|\Exception $expected
+     * @param mixed|Exception $expected
      * @param callable $callable
      * @param mixed ... $args
      */
-    function trial($expected, callable $callable, ...$args)
+    function trial($expected, callable $callable, ...$args): void
     {
-        if ($expected instanceof \Exception) {
+        if ($expected instanceof Exception) {
             assert\exception($expected, $callable, ...$args);
         } else {
             assert\equals($expected, $callable(...$args));
@@ -205,19 +205,20 @@ namespace fn\test\assert\equals {
 
 namespace fn\test\assert\same {
 
+    use Exception;
     use fn\test\assert;
     use fn;
 
     /**
-     * @see \PHPUnit_Framework_Assert::assertSame
+     * @see \PHPUnit\Framework\Assert::assertSame
      *
-     * @param mixed|\Exception $expected
+     * @param mixed|Exception $expected
      * @param callable $callable
      * @param mixed ... $args
      */
-    function trial($expected, callable $callable, ...$args)
+    function trial($expected, callable $callable, ...$args): void
     {
-        if ($expected instanceof \Exception) {
+        if ($expected instanceof Exception) {
             assert\exception($expected, $callable, ...$args);
         } else {
             assert\same($expected, $callable(...$args));

@@ -1,11 +1,6 @@
 <?php
 /**
- * (c) php-fn
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed map this source code.
+ * Copyright (C) php-fn. See LICENSE file for license details.
  */
 
-if (!function_exists('\fn\test\assert\equals')) {
-    require_once __DIR__ . '/fn/functions-assert.php';
-}
+require_once __DIR__ . '/functions-assert.php';
