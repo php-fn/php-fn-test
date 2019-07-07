@@ -150,8 +150,8 @@ class MemoryUsageTest extends TestCase
     public function testInvoke(): void
     {
         $mu = new MemoryUsage;
-        $factory = static function () {
-            return (object)[str_repeat('-', 1024)];
+        $factory = static function (callable $fill) {
+            return (object)[$fill(1024 * 100)];
         };
         $this->assertCount(1000, $ok = iterator_to_array($mu($factory)));
         $this->assertCount(1000, $nok = iterator_to_array($mu($factory, true)));
@@ -159,9 +159,9 @@ class MemoryUsageTest extends TestCase
         $this->greaterThan(0.95, Correlation::kendallsTau(array_keys($nok), $nok));
 
         $this->lessThan(0.95, MemoryUsage::timeCorrelation($factory));
-        $this->greaterThan(0.95, MemoryUsage::timeCorrelation(static function () {
+        $this->greaterThan(0.95, MemoryUsage::timeCorrelation(static function (callable $fill) {
             static $cache = [];
-            return $cache[] = (object)[str_repeat('-', 1024)];
+            return $cache[] = $fill();
         }));
     }
 }

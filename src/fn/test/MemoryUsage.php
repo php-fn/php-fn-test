@@ -74,13 +74,17 @@ class MemoryUsage
      */
     public function __invoke(callable $factory, bool $simulateLeak = false): Generator
     {
+        static $repeat;
+        $repeat ?: $repeat = static function (int $multiplier = 1024) {
+            return str_repeat('b', $multiplier);
+        };
         ['step.count' => $stepCount, 'usage' => $startUsage, 'step.memory' => $stepMemory] = $this->describe('');
         $data = [];
         for ($i = 0; $i < $stepCount; ++$i) {
             $simulateLeak || $data = [];
             $memoryUsage = self::bytes(memory_get_usage());
             do {
-                $data[] = $factory();
+                $data[] = $factory($repeat);
                 $stopUsage = self::bytes(memory_get_usage());
                 $stepDiff = $stopUsage - $memoryUsage;
             } while ($stepDiff < $stepMemory);
