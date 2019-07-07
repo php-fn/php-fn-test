@@ -5,6 +5,9 @@
 
 namespace fn\test;
 
+use Generator;
+use MathPHP\Statistics\Correlation;
+
 class MemoryUsage
 {
     public const K = 'k';
@@ -62,6 +65,42 @@ class MemoryUsage
             yield 'step.memory' => self::bytes($step, $unit) . $unit;
             yield 'step.count' => (int)round($max / $step);
         })());
+    }
+
+    /**
+     * @param callable $factory
+     * @param bool $simulateLeak
+     * @return Generator
+     */
+    public function __invoke(callable $factory, bool $simulateLeak = false): Generator
+    {
+        ['step.count' => $stepCount, 'usage' => $startUsage, 'step.memory' => $stepMemory] = $this->describe('');
+        $data = [];
+        for ($i = 0; $i < $stepCount; ++$i) {
+            $simulateLeak || $data = [];
+            $memoryUsage = self::bytes(memory_get_usage());
+            do {
+                $data[] = $factory();
+                $stopUsage = self::bytes(memory_get_usage());
+                $stepDiff = $stopUsage - $memoryUsage;
+            } while ($stepDiff < $stepMemory);
+            yield $stopUsage - $startUsage;
+        }
+        unset($data);
+    }
+
+    /** @noinspection PhpDocMissingThrowsInspection */
+    /**
+     * @param callable $factory
+     * @param string|null $step
+     * @param string|null $max
+     * @return float
+     */
+    public static function timeCorrelation(callable $factory, string $step = null, string $max = null): float
+    {
+        $mu = new static($step, $max);
+        $data = iterator_to_array($mu($factory));
+        return Correlation::kendallsTau(array_keys($data), $data);
     }
 
     /**

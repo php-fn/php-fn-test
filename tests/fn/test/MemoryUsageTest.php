@@ -5,6 +5,7 @@
 
 namespace fn\test;
 
+use MathPHP\Statistics\Correlation;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -140,5 +141,27 @@ class MemoryUsageTest extends TestCase
             (int)(MemoryUsage::bytes(memory_get_usage(), MemoryUsage::M) . MemoryUsage::M),
             (int)$result['usage']
         );
+    }
+
+    /**
+     * @covers ::__invoke
+     * @covers ::timeCorrelation
+     */
+    public function testInvoke(): void
+    {
+        $mu = new MemoryUsage;
+        $factory = static function () {
+            return (object)[str_repeat('-', 1024)];
+        };
+        $this->assertCount(1000, $ok = iterator_to_array($mu($factory)));
+        $this->assertCount(1000, $nok = iterator_to_array($mu($factory, true)));
+        $this->lessThan(0.95, Correlation::kendallsTau(array_keys($ok), $ok));
+        $this->greaterThan(0.95, Correlation::kendallsTau(array_keys($nok), $nok));
+
+        $this->lessThan(0.95, MemoryUsage::timeCorrelation($factory));
+        $this->greaterThan(0.95, MemoryUsage::timeCorrelation(static function () {
+            static $cache = [];
+            return $cache[] = (object)[str_repeat('-', 1024)];
+        }));
     }
 }
