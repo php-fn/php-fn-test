@@ -47,7 +47,7 @@ class MemoryUsageTest extends TestCase
 
     /**
      * @dataProvider providerBytes
-     * @covers ::bytes
+     * @covers \fn\test\MemoryUsage::bytes
      *
      * @param $expected
      * @param mixed ...$args
@@ -111,7 +111,7 @@ class MemoryUsageTest extends TestCase
 
     /**
      * @dataProvider providerDescribe
-     * @covers ::describe
+     * @covers \fn\test\MemoryUsage::describe
      * @param $expected
      * @param mixed ...$args
      */
@@ -124,7 +124,7 @@ class MemoryUsageTest extends TestCase
     }
 
     /**
-     * @covers ::describe
+     * @covers \fn\test\MemoryUsage::describe
      */
     public function testDescribeDefaults(): void
     {
@@ -144,8 +144,8 @@ class MemoryUsageTest extends TestCase
     }
 
     /**
-     * @covers ::__invoke
-     * @covers ::timeCorrelation
+     * @covers \fn\test\MemoryUsage::__invoke
+     * @covers \fn\test\MemoryUsage::timeCorrelation
      */
     public function testInvoke(): void
     {

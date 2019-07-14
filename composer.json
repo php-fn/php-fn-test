@@ -5,10 +5,10 @@
   "require": {
     "markrogoyski/math-php": "^0",
     "phpunit/phpunit": "^7.5",
-
     "php": ">=7.1"
   },
   "require-dev": {
+    "php-coveralls/php-coveralls": "^2.1",
     "roave/security-advisories": "dev-master"
   },
   "autoload": {
