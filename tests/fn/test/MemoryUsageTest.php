@@ -54,7 +54,7 @@ class MemoryUsageTest extends TestCase
      */
     public function testBytes($expected, ...$args): void
     {
-        $this->assertSame($expected, MemoryUsage::bytes(...$args));
+        self::assertSame($expected, MemoryUsage::bytes(...$args));
     }
 
     /**
@@ -117,7 +117,7 @@ class MemoryUsageTest extends TestCase
      */
     public function testDescribe($expected, ...$args): void
     {
-        $this->assertSame(
+        self::assertSame(
             $expected,
             (new MemoryUsage(...$args))->describe(... array_slice($args, 2))
         );
@@ -130,14 +130,14 @@ class MemoryUsageTest extends TestCase
     {
         $result = (new MemoryUsage)->describe();
 
-        $this->assertSame('10%', $result['max']);
-        $this->assertSame('0.1%', $result['step']);
-        $this->assertSame(1000, $result['step.count']);
-        $this->assertSame(
+        self::assertSame('10%', $result['max']);
+        self::assertSame('0.1%', $result['step']);
+        self::assertSame(1000, $result['step.count']);
+        self::assertSame(
             MemoryUsage::bytes(ini_get('memory_limit'), MemoryUsage::M) . MemoryUsage::M,
             $result['limit']
         );
-        $this->assertSame(
+        self::assertSame(
             (int)(MemoryUsage::bytes(memory_get_usage(), MemoryUsage::M) . MemoryUsage::M),
             (int)$result['usage']
         );
@@ -153,13 +153,13 @@ class MemoryUsageTest extends TestCase
         $factory = static function (callable $fill) {
             return (object)[$fill(1024 * 100)];
         };
-        $this->assertCount(1000, $ok = iterator_to_array($mu($factory)));
-        $this->assertCount(1000, $nok = iterator_to_array($mu($factory, true)));
-        $this->assertLessThan(0.95, Correlation::kendallsTau(array_keys($ok), $ok));
-        $this->assertGreaterThan(0.95, Correlation::kendallsTau(array_keys($nok), $nok));
+        self::assertCount(1000, $ok = iterator_to_array($mu($factory)));
+        self::assertCount(1000, $nok = iterator_to_array($mu($factory, true)));
+        self::assertLessThan(0.95, Correlation::kendallsTau(array_keys($ok), $ok));
+        self::assertGreaterThan(0.95, Correlation::kendallsTau(array_keys($nok), $nok));
 
-        $this->assertLessThan(0.95, MemoryUsage::timeCorrelation($factory));
-        $this->assertGreaterThan(0.95, MemoryUsage::timeCorrelation(static function (callable $fill) {
+        self::assertLessThan(0.95, MemoryUsage::timeCorrelation($factory));
+        self::assertGreaterThan(0.95, MemoryUsage::timeCorrelation(static function (callable $fill) {
             static $cache = [];
             return $cache[] = $fill();
         }));

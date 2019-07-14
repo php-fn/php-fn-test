@@ -36,9 +36,9 @@ class FunctionsTest extends TestCase
 
         try {
             fail('message');
-            $this->fail();
+            self::fail();
         } catch (AssertionFailedError $exception) {
-            $this->assertEquals('message', $exception->getMessage());
+            self::assertEquals('message', $exception->getMessage());
         }
 
         exception('message', static function (FunctionsTest $arg) {
@@ -84,65 +84,65 @@ class FunctionsTest extends TestCase
     {
         try {
             equals(1, 2);
-            $this->fail();
+            self::fail();
         } catch(ExpectationFailedException $actual) {
-            $this->assertSame('Failed asserting that 2 matches expected 1.', $actual->getMessage());
+            self::assertSame('Failed asserting that 2 matches expected 1.', $actual->getMessage());
         }
 
         try {
             same(1, '1');
-            $this->fail();
+            self::fail();
         } catch(ExpectationFailedException $actual) {
-            $this->assertSame("Failed asserting that '1' is identical to 1.", $actual->getMessage());
+            self::assertSame("Failed asserting that '1' is identical to 1.", $actual->getMessage());
         }
 
         try {
             true(false);
-            $this->fail();
+            self::fail();
         } catch(ExpectationFailedException $actual) {
-            $this->assertSame('Failed asserting that false is true.', $actual->getMessage());
+            self::assertSame('Failed asserting that false is true.', $actual->getMessage());
         }
 
         try {
             false(true);
-            $this->fail();
+            self::fail();
         } catch(ExpectationFailedException $actual) {
-            $this->assertSame('Failed asserting that true is false.', $actual->getMessage());
+            self::assertSame('Failed asserting that true is false.', $actual->getMessage());
         }
 
         try {
             not\equals(1, '1');
-            $this->fail();
+            self::fail();
         } catch(ExpectationFailedException $actual) {
-            $this->assertSame("Failed asserting that '1' is not equal to 1.", $actual->getMessage());
+            self::assertSame("Failed asserting that '1' is not equal to 1.", $actual->getMessage());
         }
 
         try {
             not\same(1, 1);
-            $this->fail();
+            self::fail();
         } catch(ExpectationFailedException $actual) {
-            $this->assertSame('Failed asserting that 1 is not identical to 1.', $actual->getMessage());
+            self::assertSame('Failed asserting that 1 is not identical to 1.', $actual->getMessage());
         }
 
         try {
             not\true(true);
-            $this->fail();
+            self::fail();
         } catch(ExpectationFailedException $actual) {
-            $this->assertSame('Failed asserting that true is not true.', $actual->getMessage());
+            self::assertSame('Failed asserting that true is not true.', $actual->getMessage());
         }
 
         try {
             not\false(false);
-            $this->fail();
+            self::fail();
         } catch(ExpectationFailedException $actual) {
-            $this->assertSame('Failed asserting that false is not false.', $actual->getMessage());
+            self::assertSame('Failed asserting that false is not false.', $actual->getMessage());
         }
 
         try {
             type('not-a-type', $this);
-            $this->fail();
+            self::fail();
         } catch (FrameworkException $actual) {
-            $this->assertSame(
+            self::assertSame(
                 'Argument #1 (No Value) of PHPUnit\\Framework\\Assert::assertInstanceOf() must be a class or interface name',
                 $actual->getMessage()
             );
@@ -150,25 +150,25 @@ class FunctionsTest extends TestCase
 
         try {
             type('array', null);
-            $this->fail();
+            self::fail();
         } catch (FrameworkException $actual) {
-            $this->assertSame('Failed asserting that null is of type "array".', $actual->getMessage());
+            self::assertSame('Failed asserting that null is of type "array".', $actual->getMessage());
         }
 
         try {
             exception(null, static function () {});
-            $this->fail();
+            self::fail();
         } catch (AssertionFailedError $actual) {
-            $this->assertSame('Expects exception', $actual->getMessage());
+            self::assertSame('Expects exception', $actual->getMessage());
         }
 
         try {
             exception(new LogicException, static function () {
                 throw new RuntimeException('');
             });
-            $this->fail();
+            self::fail();
         } catch (ExpectationFailedException $actual) {
-            $this->assertSame(
+            self::assertSame(
                 'Failed asserting that RuntimeException Object (...) is an instance of class "LogicException".',
                 $actual->getMessage()
             );
@@ -178,18 +178,18 @@ class FunctionsTest extends TestCase
             exception('expected', static function () {
                 fail('actual');
             });
-            $this->fail();
+            self::fail();
         } catch (ExpectationFailedException $actual) {
-            $this->assertSame('Failed asserting that two strings are equal.', $actual->getMessage());
+            self::assertSame('Failed asserting that two strings are equal.', $actual->getMessage());
         }
 
         try {
             equals\trial(1, static function () {
                 return 2;
             });
-            $this->fail();
+            self::fail();
         } catch (ExpectationFailedException $actual) {
-            $this->assertSame('Failed asserting that 2 matches expected 1.', $actual->getMessage());
+            self::assertSame('Failed asserting that 2 matches expected 1.', $actual->getMessage());
         }
 
         try {
@@ -197,16 +197,16 @@ class FunctionsTest extends TestCase
                 fail('actual');
             });
         } catch(ExpectationFailedException $actual) {
-            $this->assertSame('Failed asserting that two strings are equal.', $actual->getMessage());
+            self::assertSame('Failed asserting that two strings are equal.', $actual->getMessage());
         }
 
         try {
             same\trial(1, static function () {
                 return '1';
             });
-            $this->fail();
+            self::fail();
         } catch(ExpectationFailedException $actual) {
-            $this->assertSame("Failed asserting that '1' is identical to 1.", $actual->getMessage());
+            self::assertSame("Failed asserting that '1' is identical to 1.", $actual->getMessage());
         }
 
         try {
@@ -214,49 +214,49 @@ class FunctionsTest extends TestCase
                 fail('actual');
             });
         } catch(ExpectationFailedException $actual) {
-            $this->assertSame('Failed asserting that two strings are equal.', $actual->getMessage());
+            self::assertSame('Failed asserting that two strings are equal.', $actual->getMessage());
         }
 
         try {
             gt(0.0098, 0.0098);
-            $this->fail();
+            self::fail();
         } catch(ExpectationFailedException $actual) {
-            $this->assertSame('Failed asserting that 0.0098 is greater than 0.0098.', $actual->getMessage());
+            self::assertSame('Failed asserting that 0.0098 is greater than 0.0098.', $actual->getMessage());
         }
 
         try {
             gt(0.0098, 0.0097);
-            $this->fail();
+            self::fail();
         } catch(ExpectationFailedException $actual) {
-            $this->assertSame('Failed asserting that 0.0097 is greater than 0.0098.', $actual->getMessage());
+            self::assertSame('Failed asserting that 0.0097 is greater than 0.0098.', $actual->getMessage());
         }
 
         try {
             ge(0.0098, 0.0097);
-            $this->fail();
+            self::fail();
         } catch(ExpectationFailedException $actual) {
-            $this->assertSame('Failed asserting that 0.0097 is equal to 0.0098 or is greater than 0.0098.', $actual->getMessage());
+            self::assertSame('Failed asserting that 0.0097 is equal to 0.0098 or is greater than 0.0098.', $actual->getMessage());
         }
 
         try {
             lt(0.0098, 0.0098);
-            $this->fail();
+            self::fail();
         } catch(ExpectationFailedException $actual) {
-            $this->assertSame('Failed asserting that 0.0098 is less than 0.0098.', $actual->getMessage());
+            self::assertSame('Failed asserting that 0.0098 is less than 0.0098.', $actual->getMessage());
         }
 
         try {
             lt(0.0098, 0.0099);
-            $this->fail();
+            self::fail();
         } catch(ExpectationFailedException $actual) {
-            $this->assertSame('Failed asserting that 0.0099 is less than 0.0098.', $actual->getMessage());
+            self::assertSame('Failed asserting that 0.0099 is less than 0.0098.', $actual->getMessage());
         }
 
         try {
             le(0.0098, 0.0099);
-            $this->fail();
+            self::fail();
         } catch(ExpectationFailedException $actual) {
-            $this->assertSame('Failed asserting that 0.0099 is equal to 0.0098 or is less than 0.0098.', $actual->getMessage());
+            self::assertSame('Failed asserting that 0.0099 is equal to 0.0098 or is less than 0.0098.', $actual->getMessage());
         }
     }
 }
