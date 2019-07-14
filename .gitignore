@@ -10,6 +10,7 @@
 ## files
 !/.editorconfig
 !/.gitattributes
+!/.travis.yml
 !/.gitignore
 !/composer.json
 !/LICENSE*

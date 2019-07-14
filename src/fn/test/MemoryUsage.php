@@ -114,8 +114,8 @@ class MemoryUsage
      */
     public static function bytes(string $memory, string $unit = null)
     {
-        $bytes = (float)$memory * 1024 ** static::EXP[strtolower($memory)[-1]] ?? 0;
-        $float = round($bytes / 1024 ** static::EXP[$unit[0]] ?? 0, 3);
+        $bytes = (float)$memory * 1024 ** (static::EXP[strtolower($memory)[-1]] ?? 0);
+        $float = round($bytes / 1024 ** (static::EXP[$unit[0] ?? null] ?? 0), 3);
         return $float <=> ($int = (int)$float) ? $float : $int;
     }
 }

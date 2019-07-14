@@ -155,11 +155,11 @@ class MemoryUsageTest extends TestCase
         };
         $this->assertCount(1000, $ok = iterator_to_array($mu($factory)));
         $this->assertCount(1000, $nok = iterator_to_array($mu($factory, true)));
-        $this->lessThan(0.95, Correlation::kendallsTau(array_keys($ok), $ok));
-        $this->greaterThan(0.95, Correlation::kendallsTau(array_keys($nok), $nok));
+        $this->assertLessThan(0.95, Correlation::kendallsTau(array_keys($ok), $ok));
+        $this->assertGreaterThan(0.95, Correlation::kendallsTau(array_keys($nok), $nok));
 
-        $this->lessThan(0.95, MemoryUsage::timeCorrelation($factory));
-        $this->greaterThan(0.95, MemoryUsage::timeCorrelation(static function (callable $fill) {
+        $this->assertLessThan(0.95, MemoryUsage::timeCorrelation($factory));
+        $this->assertGreaterThan(0.95, MemoryUsage::timeCorrelation(static function (callable $fill) {
             static $cache = [];
             return $cache[] = $fill();
         }));

@@ -24,5 +24,8 @@
     "branch-alias": {
       "dev-master": "2.x-dev"
     }
+  },
+  "scripts": {
+    "test": "php -d error_reporting=22527 vendor/bin/phpunit tests/"
   }
 }
