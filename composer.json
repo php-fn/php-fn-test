@@ -1,31 +1,41 @@
 {
-  "name": "php-fn/test",
-  "homepage": "https://github.com/php-fn/php-fn-test",
-  "license": "MIT",
-  "require": {
-    "markrogoyski/math-php": "~0.52",
-    "phpunit/phpunit": "^7.5",
-    "php": ">=7.1"
-  },
-  "require-dev": {
-    "php-coveralls/php-coveralls": "^2.1",
-    "roave/security-advisories": "dev-master"
-  },
-  "autoload": {
-    "psr-4": {"php\\": ["src/php"]},
-    "files": ["src/autoload-files.php"]
-  },
-  "autoload-dev": {
-    "psr-4": {"php\\": ["tests/php"]}
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true,
-  "extra": {
-    "branch-alias": {
-      "dev-master": "3.x-dev"
+    "name": "php-fn/test",
+    "homepage": "https://github.com/php-fn/php-fn-test",
+    "license": "MIT",
+    "require": {
+        "markrogoyski/math-php": "~0.52",
+        "phpunit/phpunit": "^7.5",
+        "php": ">=7.1"
+    },
+    "require-dev": {
+        "php-coveralls/php-coveralls": "^2.1",
+        "roave/security-advisories": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "php\\": [
+                "src/php"
+            ]
+        },
+        "files": [
+            "src/autoload-files.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "php\\": [
+                "tests/php"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "branch-alias": {
+            "dev-master": "3.x-dev"
+        }
+    },
+    "scripts": {
+        "test": "php -d error_reporting=22527 vendor/bin/phpunit tests/"
     }
-  },
-  "scripts": {
-    "test": "php -d error_reporting=22527 vendor/bin/phpunit tests/"
-  }
 }
