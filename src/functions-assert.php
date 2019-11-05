@@ -3,7 +3,7 @@
  * Copyright (C) php-fn. See LICENSE file for license details.
  */
 
-namespace php\test\assert {
+namespace Php\test\assert {
 
     use Exception;
     use PHPUnit\Framework\Assert;
@@ -166,7 +166,7 @@ namespace php\test\assert {
     }
 }
 
-namespace php\test\assert\not {
+namespace Php\test\assert\not {
 
     use PHPUnit\Framework\Assert;
 
@@ -228,11 +228,11 @@ namespace php\test\assert\not {
     }
 }
 
-namespace php\test\assert\equals {
+namespace Php\test\assert\equals {
 
     use Exception;
-    use php\test\assert;
-    use php;
+    use Php\test\assert;
+    use Php;
 
     /**
      * @see \PHPUnit\Framework\Assert::assertEquals
@@ -251,11 +251,11 @@ namespace php\test\assert\equals {
     }
 }
 
-namespace php\test\assert\same {
+namespace Php\test\assert\same {
 
     use Exception;
-    use php\test\assert;
-    use php;
+    use Php\test\assert;
+    use Php;
 
     /**
      * @see \PHPUnit\Framework\Assert::assertSame

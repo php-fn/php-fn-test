@@ -3,7 +3,7 @@
  * Copyright (C) php-fn. See LICENSE file for license details.
  */
 
-namespace php\test;
+namespace Php\test;
 
 use MathPHP\Statistics\Correlation;
 use PHPUnit\Framework\TestCase;
@@ -47,7 +47,7 @@ class MemoryUsageTest extends TestCase
 
     /**
      * @dataProvider providerBytes
-     * @covers \php\test\MemoryUsage::bytes
+     * @covers \Php\test\MemoryUsage::bytes
      *
      * @param $expected
      * @param mixed ...$args
@@ -111,7 +111,7 @@ class MemoryUsageTest extends TestCase
 
     /**
      * @dataProvider providerDescribe
-     * @covers \php\test\MemoryUsage::describe
+     * @covers \Php\test\MemoryUsage::describe
      * @param $expected
      * @param mixed ...$args
      */
@@ -124,7 +124,7 @@ class MemoryUsageTest extends TestCase
     }
 
     /**
-     * @covers \php\test\MemoryUsage::describe
+     * @covers \Php\test\MemoryUsage::describe
      */
     public function testDescribeDefaults(): void
     {
@@ -144,8 +144,8 @@ class MemoryUsageTest extends TestCase
     }
 
     /**
-     * @covers \php\test\MemoryUsage::__invoke
-     * @covers \php\test\MemoryUsage::timeCorrelation
+     * @covers \Php\test\MemoryUsage::__invoke
+     * @covers \Php\test\MemoryUsage::timeCorrelation
      */
     public function testInvoke(): void
     {

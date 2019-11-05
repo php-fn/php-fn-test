@@ -3,7 +3,7 @@
  * Copyright (C) php-fn. See LICENSE file for license details.
  */
 
-namespace php\test\assert;
+namespace Php\test\assert;
 
 use Exception;
 use LogicException;

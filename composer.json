@@ -13,7 +13,7 @@
     },
     "autoload": {
         "psr-4": {
-            "php\\": [
+            "Php\\": [
                 "src/php"
             ]
         },
@@ -23,7 +23,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "php\\": [
+            "Php\\": [
                 "tests/php"
             ]
         }

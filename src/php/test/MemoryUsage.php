@@ -3,7 +3,7 @@
  * Copyright (C) php-fn. See LICENSE file for license details.
  */
 
-namespace php\test;
+namespace Php\test;
 
 use Generator;
 use MathPHP\Statistics\Correlation;
