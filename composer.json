@@ -14,7 +14,7 @@
     "autoload": {
         "psr-4": {
             "Php\\": [
-                "src/php"
+                "src/Php"
             ]
         },
         "files": [
@@ -24,7 +24,7 @@
     "autoload-dev": {
         "psr-4": {
             "Php\\": [
-                "tests/php"
+                "tests/Php"
             ]
         }
     },
