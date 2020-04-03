@@ -11,6 +11,7 @@ namespace Php\test\assert {
     use PHPUnit\Framework\Constraint\IsType;
 
     /**
+     * @deprecated
      * @see Assert::assertEquals
      *
      * @param mixed  $expected
@@ -34,6 +35,7 @@ namespace Php\test\assert {
     }
 
     /**
+     * @deprecated
      * @see Assert::assertSame
      *
      * @param mixed  $expected
@@ -46,6 +48,7 @@ namespace Php\test\assert {
     }
 
     /**
+     * @deprecated
      * @see Assert::assertGreaterThan
      *
      * @param mixed $expected
@@ -58,6 +61,7 @@ namespace Php\test\assert {
     }
 
     /**
+     * @deprecated
      * @see Assert::assertGreaterThanOrEqual
      *
      * @param mixed $expected
@@ -70,6 +74,7 @@ namespace Php\test\assert {
     }
 
     /**
+     * @deprecated
      * @see Assert::assertLessThan
      *
      * @param mixed $expected
@@ -82,6 +87,7 @@ namespace Php\test\assert {
     }
 
     /**
+     * @deprecated
      * @see Assert::assertLessThanOrEqual
      *
      * @param mixed $expected
@@ -94,6 +100,7 @@ namespace Php\test\assert {
     }
 
     /**
+     * @deprecated
      * @see Assert::assertTrue
      *
      * @param bool   $condition
@@ -105,6 +112,7 @@ namespace Php\test\assert {
     }
 
     /**
+     * @deprecated
      * @see Assert::assertFalse
      *
      * @param bool   $condition
@@ -116,6 +124,7 @@ namespace Php\test\assert {
     }
 
     /**
+     * @deprecated
      * @see Assert::assertInstanceOf
      *
      * @param string $expected
@@ -134,6 +143,7 @@ namespace Php\test\assert {
     }
 
     /**
+     * @deprecated
      * @see Assert::fail
      *
      * @param string $message
@@ -146,6 +156,7 @@ namespace Php\test\assert {
     }
 
     /**
+     * @deprecated
      * @param string|Exception $exception
      * @param callable $callable
      * @param mixed ...$arguments
@@ -171,6 +182,7 @@ namespace Php\test\assert\not {
     use PHPUnit\Framework\Assert;
 
     /**
+     * @deprecated
      * @see Assert::assertNotEquals
      *
      * @param mixed  $expected
@@ -194,6 +206,7 @@ namespace Php\test\assert\not {
     }
 
     /**
+     * @deprecated
      * @see Assert::assertNotSame
      *
      * @param mixed  $expected
@@ -206,6 +219,7 @@ namespace Php\test\assert\not {
     }
 
     /**
+     * @deprecated
      * @see Assert::assertNotTrue
      *
      * @param bool   $condition
@@ -217,6 +231,7 @@ namespace Php\test\assert\not {
     }
 
     /**
+     * @deprecated
      * @see Assert::assertNotFalse
      *
      * @param bool   $condition
@@ -235,6 +250,7 @@ namespace Php\test\assert\equals {
     use Php;
 
     /**
+     * @deprecated
      * @see \PHPUnit\Framework\Assert::assertEquals
      *
      * @param mixed|Exception $expected
@@ -258,6 +274,7 @@ namespace Php\test\assert\same {
     use Php;
 
     /**
+     * @deprecated
      * @see \PHPUnit\Framework\Assert::assertSame
      *
      * @param mixed|Exception $expected
