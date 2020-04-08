@@ -11,14 +11,14 @@ use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\Constraint;
 
 /**
- * @uses Assert::assertEquals
+ * @see Assert::assertEquals
  * @method static tryEquals(mixed|Exception $expected, mixed|Closure $actual, string $message = ''): void
- * @uses Assert::assertNotEquals
+ * @see Assert::assertNotEquals
  * @method static tryNotEquals(mixed|Exception $expected, mixed|Closure $actual, string $message = ''): void
  *
- * @uses Assert::assertSame
+ * @see Assert::assertSame
  * @method static trySame(mixed|Exception $expected, mixed|Closure $actual, string $message = ''): void
- * @uses Assert::assertNotSame
+ * @see Assert::assertNotSame
  * @method static tryNotSame(mixed|Exception $expected, mixed|Closure $actual, string $message = ''): void
  */
 trait AssertTrait
