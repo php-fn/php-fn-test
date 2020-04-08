@@ -1,21 +1,15 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Copyright (C) php-fn. See LICENSE file for license details.
  */
 
-namespace Php\test;
+namespace Php\Test;
 
 use MathPHP\Statistics\Correlation;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @coversDefaultClass MemoryUsage
- */
 class MemoryUsageTest extends TestCase
 {
-    /**
-     * @return array
-     */
     public static function providerBytes(): array
     {
         return [
@@ -47,7 +41,6 @@ class MemoryUsageTest extends TestCase
 
     /**
      * @dataProvider providerBytes
-     * @covers \Php\test\MemoryUsage::bytes
      *
      * @param $expected
      * @param mixed ...$args
@@ -57,9 +50,6 @@ class MemoryUsageTest extends TestCase
         self::assertSame($expected, MemoryUsage::bytes(...$args));
     }
 
-    /**
-     * @return array
-     */
     public static function providerDescribe(): array
     {
         return [
@@ -111,7 +101,6 @@ class MemoryUsageTest extends TestCase
 
     /**
      * @dataProvider providerDescribe
-     * @covers \Php\test\MemoryUsage::describe
      * @param $expected
      * @param mixed ...$args
      */
@@ -123,9 +112,6 @@ class MemoryUsageTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Php\test\MemoryUsage::describe
-     */
     public function testDescribeDefaults(): void
     {
         $result = (new MemoryUsage)->describe();
@@ -143,10 +129,6 @@ class MemoryUsageTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Php\test\MemoryUsage::__invoke
-     * @covers \Php\test\MemoryUsage::timeCorrelation
-     */
     public function testInvoke(): void
     {
         $mu = new MemoryUsage;

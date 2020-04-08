@@ -1,9 +1,9 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Copyright (C) php-fn. See LICENSE file for license details.
  */
 
-namespace Php\test;
+namespace Php\Test;
 
 use Generator;
 use MathPHP\Statistics\Correlation;
@@ -112,9 +112,9 @@ class MemoryUsage
      * @param string|null $unit k|m|g
      * @return int|float
      */
-    public static function bytes(string $memory, string $unit = null)
+    public static function bytes($memory, string $unit = null)
     {
-        $bytes = (float)$memory * 1024 ** (static::EXP[strtolower($memory)[-1]] ?? 0);
+        $bytes = (float) $memory * 1024 ** (static::EXP[strtolower((string)$memory)[-1]] ?? 0);
         $float = round($bytes / 1024 ** (static::EXP[$unit[0] ?? null] ?? 0), 3);
         return $float <=> ($int = (int)$float) ? $float : $int;
     }

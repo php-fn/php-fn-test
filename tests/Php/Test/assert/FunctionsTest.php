@@ -13,12 +13,8 @@ use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
-/**
- */
 class FunctionsTest extends TestCase
 {
-    /**
-     */
     public function testPositive(): void
     {
         equals(1, '1');
