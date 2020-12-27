@@ -3,12 +3,12 @@
     "homepage": "https://github.com/php-fn/php-fn-test",
     "license": "MIT",
     "require": {
-        "markrogoyski/math-php": "~0.52",
-        "phpunit/phpunit": "^7.5",
-        "php": ">=7.1"
+        "markrogoyski/math-php": "~v0.62",
+        "phpunit/phpunit": "^9.0",
+        "php": "^7.3|^8.0"
     },
     "require-dev": {
-        "php-coveralls/php-coveralls": "^2.1",
+        "php-coveralls/php-coveralls": "^2.4",
         "roave/security-advisories": "dev-master"
     },
     "autoload": {

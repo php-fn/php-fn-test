@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Copyright (C) php-fn. See LICENSE file for license details.
  */
@@ -8,7 +8,6 @@ namespace Php\test\assert;
 use Exception;
 use LogicException;
 use PHPUnit\Framework\AssertionFailedError;
-use PHPUnit\Framework\Exception as FrameworkException;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
@@ -27,8 +26,6 @@ class FunctionsTest extends TestCase
         not\true(false);
         not\false(true);
 
-        type('array', []);
-        type(self::class, $this);
 
         try {
             fail('message');
@@ -74,8 +71,6 @@ class FunctionsTest extends TestCase
         le(0.0098, 0.0098);
     }
 
-    /**
-     */
     public function testNegative(): void
     {
         try {
@@ -135,24 +130,7 @@ class FunctionsTest extends TestCase
         }
 
         try {
-            type('not-a-type', $this);
-            self::fail();
-        } catch (FrameworkException $actual) {
-            self::assertSame(
-                'Argument #1 (No Value) of PHPUnit\\Framework\\Assert::assertInstanceOf() must be a class or interface name',
-                $actual->getMessage()
-            );
-        }
-
-        try {
-            type('array', null);
-            self::fail();
-        } catch (FrameworkException $actual) {
-            self::assertSame('Failed asserting that null is of type "array".', $actual->getMessage());
-        }
-
-        try {
-            exception(null, static function () {});
+            exception('', static function () {});
             self::fail();
         } catch (AssertionFailedError $actual) {
             self::assertSame('Expects exception', $actual->getMessage());

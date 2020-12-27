@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Copyright (C) php-fn. See LICENSE file for license details.
  */
@@ -125,25 +125,6 @@ namespace Php\test\assert {
 
     /**
      * @deprecated
-     * @see Assert::assertInstanceOf
-     *
-     * @param string $expected
-     * @param mixed $actual
-     * @param string $message
-     */
-    function type($expected, $actual, $message = ''): void
-    {
-        try {
-            new IsType(strtolower($expected));
-        } catch (\PHPUnit\Framework\Exception $ignore) {
-            Assert::assertInstanceOf(...func_get_args());
-            return;
-        }
-        Assert::assertInternalType(strtolower($expected), ...array_slice(func_get_args(), 1));
-    }
-
-    /**
-     * @deprecated
      * @see Assert::fail
      *
      * @param string $message
@@ -169,7 +150,7 @@ namespace Php\test\assert {
         try {
             call_user_func_array($callable, $arguments);
         } catch (Exception $caught) {
-            type(get_class($exception), $caught);
+            Assert::assertInstanceOf(get_class($exception), $caught);
             equals($exception->getMessage(), $caught->getMessage());
             return;
         }
